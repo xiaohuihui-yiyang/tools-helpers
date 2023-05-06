@@ -43,7 +43,7 @@ class ArrayHelpers extends BaseHelpers
      * @param $params array
      * @return string|void
      */
-   public static function ToXml($params)
+    public static function ToXml($params)
     {
         if (!is_array($params) || count($params) == 0) {
             return;
@@ -61,9 +61,33 @@ class ArrayHelpers extends BaseHelpers
     }
 
 
+    public static function BuildTree($array = [], $parent_id = 0)
+    {
+        $tree = array();
+        foreach ($array as $item) {
+            if ($item['parent_id'] == $parent_id) {
+                $children = self::BuildTree($array, $item['id']);
+                if ($children) {
+                    $item['children'] = $children;
+                }
+                $tree[] = $item;
+            }
+        }
+        return $tree;
+    }
 
-
-
+    public static function TreeBuild($array = [])
+    {
+        static $list = [];
+        foreach ($array as $item) {
+            if ($item['children']) {
+                self::BuildTree($item['children']);
+            } else {
+                $list[] = $item;
+            }
+        }
+        return $list;
+    }
 
 
 }
