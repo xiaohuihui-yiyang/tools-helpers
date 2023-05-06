@@ -1,0 +1,21 @@
+{
+    "name": "xiaohui/helpers",
+    "description": "php帮助工具包",
+    "version": "1.0.0",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "DevTools\\Helpers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kangxiaohui2021",
+            "email": "2966003230@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "guzzlehttp/guzzle": "^7.5"
+    }
+}
