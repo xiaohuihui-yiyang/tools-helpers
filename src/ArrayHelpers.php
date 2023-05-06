@@ -76,18 +76,18 @@ class ArrayHelpers extends BaseHelpers
         return $tree;
     }
 
-    public static function TreeBuild($array = [])
-    {
-        static $list = [];
-        foreach ($array as $item) {
-            if ($item['children']) {
-                self::BuildTree($item['children']);
+    public static function FlattenTree($tree, &$result = array()) {
+        foreach($tree as $node) {
+            $result[] = $node;
+            if(isset($node['children']) && count($node['children'])) {
+                self::FlattenTree($node['children'], $result);
             } else {
-                $list[] = $item;
+                unset($node['children']);
             }
         }
-        return $list;
+        return $result;
     }
+
 
 
 }
